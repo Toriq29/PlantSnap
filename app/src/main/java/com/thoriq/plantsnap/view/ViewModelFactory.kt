@@ -7,6 +7,7 @@ import com.thoriq.plantsnap.data.UserRepository
 import com.thoriq.plantsnap.di.Injection
 import com.thoriq.plantsnap.view.login.LoginViewModel
 import com.thoriq.plantsnap.view.main.MainViewModel
+import com.thoriq.plantsnap.view.signup.SignupViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -18,6 +19,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(SignupViewModel::class.java) -> {
+                SignupViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

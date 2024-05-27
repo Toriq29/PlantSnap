@@ -1,4 +1,4 @@
-package com.thoriq.plantsnap.view.login
+package com.thoriq.plantsnap.view.signup
 
 import android.content.Context
 import android.widget.Toast
@@ -11,29 +11,29 @@ import com.thoriq.plantsnap.data.UserRepository
 import com.thoriq.plantsnap.data.pref.UserModel
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val repository: UserRepository) : ViewModel() {
+class SignupViewModel(private val userRepository: UserRepository) : ViewModel() {
+
+    private val _isRegister = MutableLiveData<Boolean>()
+    val isRegister: LiveData<Boolean> = _isRegister
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _isLogin = MutableLiveData<Boolean>()
-    val isLogin: LiveData<Boolean> = _isLogin
-
-    fun saveSession(user: UserModel) {
+    private fun saveSession(user: UserModel) {
         viewModelScope.launch {
-            repository.saveSession(user)
+            userRepository.saveSession(user)
         }
     }
 
-    fun login(context : Context, email: String, pass : String){
+    fun signUp(context : Context, name: String, email: String, pass : String){
         viewModelScope.launch {
             val firebaseAuth = FirebaseAuth.getInstance()
             _isLoading.value = true
-            firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
+            firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                 if (it.isSuccessful){
                     saveSession(UserModel(email, true))
                     _isLoading.value = false
-                    _isLogin.value = true
+                    _isRegister.value = true
                 } else{
                     Toast.makeText(context, it.exception.toString(), Toast.LENGTH_SHORT).show()
                     _isLoading.value = false
