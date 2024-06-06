@@ -7,5 +7,6 @@ data class Plant(
     val water: String?,
     val fertilizing: String?,
     val repotting: String?,
-    val pests: String?
+    val pests: String?,
+    val description: String?
 )

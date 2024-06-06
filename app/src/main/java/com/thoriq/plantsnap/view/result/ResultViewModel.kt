@@ -37,7 +37,9 @@ class ResultViewModel(private val repository: UserRepository) : ViewModel() {
                             water = data["Water"] as String,
                             fertilizing = data["Fertilizing"] as String,
                             repotting = data["Repotting"] as String,
-                            pests = data["Pests"] as String
+                            pests = data["Pests"] as String,
+                            description = data["Description"] as String
+
                         )
 
                         _plant.value = plant

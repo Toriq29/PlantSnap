@@ -42,6 +42,9 @@ class ResultActivity : AppCompatActivity() {
             binding.sunlight.text = plant.sunlight
             binding.water.text = plant.water
             binding.fertilizing.text = plant.fertilizing
+            binding.description.text = plant.description
+            binding.repotting.text = plant.repotting
+            binding.pests.text = plant.pests
         }
     }
 
