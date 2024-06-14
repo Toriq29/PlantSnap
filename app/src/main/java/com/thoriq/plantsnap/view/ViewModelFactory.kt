@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.thoriq.plantsnap.data.UserRepository
 import com.thoriq.plantsnap.di.Injection
+import com.thoriq.plantsnap.view.analyze.AnalyzeActivity
+import com.thoriq.plantsnap.view.analyze.AnalyzeViewModel
 import com.thoriq.plantsnap.view.login.LoginViewModel
 import com.thoriq.plantsnap.view.main.MainViewModel
 import com.thoriq.plantsnap.view.result.ResultViewModel
@@ -26,6 +28,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(ResultViewModel::class.java) -> {
                 ResultViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(AnalyzeViewModel::class.java) -> {
+                AnalyzeViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.thoriq.plantsnap.R
 import com.thoriq.plantsnap.databinding.ActivityMainBinding
 import com.thoriq.plantsnap.view.ViewModelFactory
+import com.thoriq.plantsnap.view.analyze.AnalyzeActivity
 import com.thoriq.plantsnap.view.result.ResultActivity
 import com.thoriq.plantsnap.view.welcome.WelcomeActivity
 
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.logout()
         }
         binding.resultButton.setOnClickListener{
-            startActivity(Intent(this, ResultActivity::class.java))
+            startActivity(Intent(this, AnalyzeActivity::class.java))
         }
     }
 }

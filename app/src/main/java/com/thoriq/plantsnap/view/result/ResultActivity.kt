@@ -1,10 +1,9 @@
 package com.thoriq.plantsnap.view.result
 
-import android.content.ContentValues.TAG
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,6 +19,10 @@ import com.thoriq.plantsnap.view.main.MainViewModel
 
 class ResultActivity : AppCompatActivity() {
 
+    companion object {
+        const val EXTRA_RESULT = "extra_result"
+    }
+
     private lateinit var binding: ActivityResultBinding
 
     private val viewModel by viewModels<ResultViewModel> {
@@ -34,7 +37,14 @@ class ResultActivity : AppCompatActivity() {
             showLoading(it)
         }
 
-        viewModel.getPlant("rose")
+        val result = intent.getStringExtra(EXTRA_RESULT)
+
+
+
+        result?.let {
+            showToast(it)
+            viewModel.getPlant(it)
+        }
 
         viewModel.plant.observe(this){ plant ->
             binding.name.text = plant.name
@@ -54,5 +64,9 @@ class ResultActivity : AppCompatActivity() {
         } else {
             binding.progressBar.visibility = View.GONE
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
