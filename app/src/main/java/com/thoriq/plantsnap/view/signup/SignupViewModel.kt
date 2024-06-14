@@ -1,6 +1,7 @@
 package com.thoriq.plantsnap.view.signup
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -29,41 +30,42 @@ class SignupViewModel(private val userRepository: UserRepository) : ViewModel() 
 
     fun signUp(context : Context, name: String, email: String, pass : String){
         viewModelScope.launch {
-//            val firebaseAuth = FirebaseAuth.getInstance()
-//            _isLoading.value = true
-//            firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
-//                if (it.isSuccessful){
-//                    saveSession(UserModel(email, true))
-//                    _isLoading.value = false
-//                    _isRegister.value = true
-//                } else{
-//                    Toast.makeText(context, it.exception.toString(), Toast.LENGTH_SHORT).show()
-//                    _isLoading.value = false
-//                }
-//
-//            }
-
-            try {
-                _isLoading.value = true
-                val response = userRepository.register(email, pass)
-                if (response.isSuccessful) {
+            val firebaseAuth = FirebaseAuth.getInstance()
+            _isLoading.value = true
+            firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
+                if (it.isSuccessful){
+                    Log.d("UUID :", it.result.user?.uid ?: "uuid")
+                    saveSession(UserModel(it.result.user?.uid ?: "uuid", true))
                     _isLoading.value = false
-                    val token = response.body()?.token
-                    val user = token?.let { UserModel(token, true) }
-
-                    user?.let { saveSession(it) }
                     _isRegister.value = true
-
-                } else {
+                } else{
+                    Toast.makeText(context, it.exception?.message.toString(), Toast.LENGTH_SHORT).show()
                     _isLoading.value = false
-                    val errorBody = response.errorBody()?.string() ?: "Unknown error"
-                    val errorMessage = Gson().fromJson(errorBody, ErrorResponse::class.java).error
-                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
                 }
-            } catch (e: Exception) {
-                _isLoading.value = false
-                Toast.makeText(context, "Login failed: ${e.message}", Toast.LENGTH_SHORT).show()
+
             }
+
+//            try {
+//                _isLoading.value = true
+//                val response = userRepository.register(email, pass)
+//                if (response.isSuccessful) {
+//                    _isLoading.value = false
+//                    val token = response.body()?.token
+//                    val user = token?.let { UserModel(token, true) }
+//
+//                    user?.let { saveSession(it) }
+//                    _isRegister.value = true
+//
+//                } else {
+//                    _isLoading.value = false
+//                    val errorBody = response.errorBody()?.string() ?: "Unknown error"
+//                    val errorMessage = Gson().fromJson(errorBody, ErrorResponse::class.java).error
+//                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+//                }
+//            } catch (e: Exception) {
+//                _isLoading.value = false
+//                Toast.makeText(context, "Login failed: ${e.message}", Toast.LENGTH_SHORT).show()
+//            }
         }
     }
 }
