@@ -1,6 +1,7 @@
 package com.thoriq.plantsnap.view.result
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -11,6 +12,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.thoriq.plantsnap.data.UserRepository
 import com.thoriq.plantsnap.data.pref.Plant
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class ResultViewModel(private val repository: UserRepository) : ViewModel() {
@@ -25,12 +27,49 @@ class ResultViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             val db = Firebase.firestore
             _isLoading.value = true
+
             val docRef = db.collection("plant").document(namePlant)
+
+            val token = repository.getSession().first().token
+
+            val data = hashMapOf(
+                "name" to namePlant
+            )
+
+
+            val historyRef = db.collection("users")
+                .document(token)
+                .collection("history")
+
+            // Query to check if the data already exists
+            historyRef.whereEqualTo("name", data["name"])
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (documents.isEmpty) {
+                        // Data does not exist, so add it
+                        historyRef.add(data).addOnSuccessListener {
+                            Log.d(TAG, "success $namePlant add data to history")
+                        }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                            }
+                    } else {
+                        // Data already exists
+                        Log.d(TAG, "Data already exists in the history")
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error checking existing data", e)
+                }
+
             docRef.get()
                 .addOnSuccessListener { document ->
                     if (document != null) {
                         _isLoading.value = false
                         val data = document.data!!
+
+
+
                         val plant = Plant(
                             name = data["Name"] as String,
                             temperature = data["Temprature"] as String,

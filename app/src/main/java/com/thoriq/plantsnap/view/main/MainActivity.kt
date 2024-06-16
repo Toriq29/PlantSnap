@@ -3,11 +3,16 @@ package com.thoriq.plantsnap.view.main
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.thoriq.plantsnap.R
+import com.thoriq.plantsnap.data.pref.History
+import com.thoriq.plantsnap.data.pref.Plant
 import com.thoriq.plantsnap.databinding.ActivityMainBinding
 import com.thoriq.plantsnap.view.ViewModelFactory
 import com.thoriq.plantsnap.view.analyze.AnalyzeActivity
@@ -30,10 +35,34 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
+            else{
+                viewModel.getHistory()
+            }
         }
+
+
+
+        viewModel.isLoading.observe(this){
+            showLoading(it)
+        }
+
+        viewModel.history.observe(this){
+            setHistoryData(it)
+        }
+
+
 
         setupView()
         setupAction()
+
+        val layoutManager = LinearLayoutManager(this)
+        binding.rvHistory.layoutManager = layoutManager
+        val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
+        binding.rvHistory.addItemDecoration(itemDecoration)
+
+
+
+
     }
 
     private fun setupView() {
@@ -55,6 +84,20 @@ class MainActivity : AppCompatActivity() {
         }
         binding.resultButton.setOnClickListener{
             startActivity(Intent(this, AnalyzeActivity::class.java))
+        }
+    }
+
+    private fun setHistoryData(githubUsers: List<History>) {
+        val adapter = HistoryAdapter()
+        adapter.submitList(githubUsers)
+        binding.rvHistory.adapter = adapter
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
         }
     }
 }

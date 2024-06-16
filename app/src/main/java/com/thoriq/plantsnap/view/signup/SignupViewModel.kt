@@ -7,7 +7,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.firestore
 import com.google.gson.Gson
 import com.thoriq.plantsnap.data.UserRepository
 import com.thoriq.plantsnap.data.pref.UserModel
@@ -30,12 +32,27 @@ class SignupViewModel(private val userRepository: UserRepository) : ViewModel() 
 
     fun signUp(context : Context, name: String, email: String, pass : String){
         viewModelScope.launch {
+
+
+
             val firebaseAuth = FirebaseAuth.getInstance()
             _isLoading.value = true
             firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                 if (it.isSuccessful){
                     Log.d("UUID :", it.result.user?.uid ?: "uuid")
                     saveSession(UserModel(it.result.user?.uid ?: "uuid", true))
+
+                    val db = Firebase.firestore
+
+                    val user = hashMapOf(
+                        "name" to name
+                    )
+
+                    it.result.user?.uid?.let { uuid ->
+                        db.collection("users").document(
+                            uuid
+                        ).set(user)
+                    }
                     _isLoading.value = false
                     _isRegister.value = true
                 } else{
