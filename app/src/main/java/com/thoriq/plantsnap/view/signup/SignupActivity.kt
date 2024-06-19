@@ -43,18 +43,22 @@ class SignupActivity : AppCompatActivity() {
             }
             signupViewModel.isRegister.observe(this){
                 if (it){
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Yeah!")
-                        setMessage("Anda berhasil registrasi")
-                        setPositiveButton("Lanjut") { _, _ ->
-                            val intent = Intent(context, MainActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                            finish()
-                        }
-                        create()
-                        show()
-                    }
+//                    AlertDialog.Builder(this).apply {
+//                        setTitle("Yeah!")
+//                        setMessage("Anda berhasil registrasi")
+//                        setPositiveButton("Lanjut") { _, _ ->
+//                            val intent = Intent(context, MainActivity::class.java)
+//                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                            startActivity(intent)
+//                            finish()
+//                        }
+//                        create()
+//                        show()
+//                    }
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
                 }
             }
 
