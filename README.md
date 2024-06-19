@@ -5,4 +5,4 @@ Setelah proses klasifikasi selesai, aplikasi ini akan memberi tahu Anda nama tan
 
 ## Tampilan
 
-![Tampilan](https://cdn.discordapp.com/attachments/1154683188594102312/1252980612764139590/PPT_KP-removebg-preview.png?ex=667430a1&is=6672df21&hm=c07f536c0a2734cff9495914676b4c1e45f176bc8747062d61ae454ee86dafd6&)
+![Tampilan](https://cdn.discordapp.com/attachments/1154683188594102312/1252982457867702384/file.png?ex=66743259&is=6672e0d9&hm=d2af2360ab2f9a739521574f48f06f5505f5b3a7b7cf55f97e6c66d5e43d90a0&)
