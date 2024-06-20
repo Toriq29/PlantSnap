@@ -2,6 +2,7 @@ package com.thoriq.plantsnap.view.result
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -21,6 +22,7 @@ class ResultActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_RESULT = "extra_result"
+        const val EXTRA_IMAGE_URI = "extra_image_uri"
     }
 
     private lateinit var binding: ActivityResultBinding
@@ -39,7 +41,13 @@ class ResultActivity : AppCompatActivity() {
 
         val result = intent.getStringExtra(EXTRA_RESULT)
 
-
+        if (intent.hasExtra(EXTRA_IMAGE_URI)) {
+            val imageUri = Uri.parse(intent.getStringExtra(EXTRA_IMAGE_URI))
+            imageUri?.let {
+                Log.d("Image URI", "showImage: $it")
+                showResult(it)
+            }
+        }
 
         result?.let {
             showToast(it)
@@ -56,6 +64,10 @@ class ResultActivity : AppCompatActivity() {
             binding.repotting.text = plant.repotting
             binding.pests.text = plant.pests
         }
+    }
+
+    private fun showResult(imageUri: Uri) {
+        binding.resultImage.setImageURI(imageUri)
     }
 
     private fun showLoading(isLoading: Boolean) {

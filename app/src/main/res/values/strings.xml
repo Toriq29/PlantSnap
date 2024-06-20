@@ -17,4 +17,94 @@
     <string name="gallery">gallery</string>
     <string name="analyze">analyze</string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+
+    <string-array name="data_name">
+        <item>Lily</item>
+        <item>Adenium</item>
+        <item>Matahari</item>
+        <item>Mawar</item>
+        <item>Tulip</item>
+        <item>Anggrek</item>
+        <item>Anyelir</item>
+        <item>Freesia</item>
+        <item>Lavender</item>
+        <item>Chrysanthemum</item>
+        <item>Hydrangea</item>
+        <item>Anthurium</item>
+        <item>Tanduk Rusa</item>
+        <item>Daun Puring</item>
+        <item>Suplir</item>
+    </string-array>
+
+    <string-array name="data_description">
+        <item>Bunga lily adalah bunga yang paling umum digunakan pada pemakaman. Hal ini secara simbolis menandakan bahwa jiwa orang yang meninggal telah dikembalikan menjadi suci kembali. Beberapa spesies bunga lily ada yang beracun, terutama untuk kucing. Bunga lily juga digunakan dalam dunia kulinari.</item>
+        <item>Adenium obesum ditanam sebagai tanaman hias di daerah yang beriklim sedang. Mereka bisa ditanam selama bertahun-tahun dalam pot dan biasanya digunakan untuk bonsai. Adenium juga dikenal dengan mawar gurun. Di Thailand, adenium juga dikenal dengan kalachuchi bangkok.</item>
+        <item>Bunga matahari berasal dari Amerika. Biji bunga matahari awalnya ditemukan di Meksiko berasal dari tahun 2100 SM. Sebelum mekar, bunga matahari akan miring di siang hari untuk menghadap matahari. Mereka melakukan itu untuk mendapat lebih banyak pasokan sinar matahari.</item>
+        <item>Bunga mawar paling dikenal sebagai tanaman hias yang ditanam di taman dan terkadang di dalam ruangan. Bunga mawar biasanya juga digunakan untuk wewangian dan tanaman bunga potong yang diperjualbelikan. Batang bunga mawar dan tunas muda bunga mawar bisa dimakan, begitu juga dengan kelopaknya.</item>
+        <item>Tulip menjadi simbol suci bagi orang Turki. Tulip juga dipandang sebagai simbol kelimpahan dan kesenangan. Tulip menjadi tanaman yang sangat populer di Timur dan Barat. Tulip putih memiliki makna sebagai pengampunan dan tupi ungu sebagai royalti.</item>
+        <item>Bunga orchid atau anggrek ini memiliki kegunaan penting. Sebagian besar anggrek dibudidayakan untuk dinikmati bunganya. kebanyakan anggrek tumbuh dan dibudidayakan di daerah yang tropis atau subtropis. Harumnya bunga anggrek juga dimanfaatkan sebagai wewangian.</item>
+        <item>Bunga anyelir atau dikenal juga dengan carnation sebagian besar berasal dari Eropa dan Asia. Bunga anyelir juga menjadi simbol untuk Hari ibu dan pernikahan. Bunga anyelir dianggap dapat menggambarkan cinta, rasa syukur dan kekaguman.</item>
+        <item>Bunga freesia adalah bunga yang memiliki bentuk seperti terompet. Kelopaknya yang berwarna-warni dan unik ini menjadikannya sangat cantik untuk ditanam. Tanaman ini sebetulnya berasal dari hasil persilangan yang  dibuat pada abad 19 antara F.refracta dan F.leichtini.</item>
+        <item>Bunga lavender juga bisa dijadikan pengobatan untuk gangguan kecemasan. Tidak hanya digunakan dalam obat-obatan, bunga lavender yang memiliki harum menenangkan ini juga dijadikan sebagai wewangian, sabun, dan juga lilin. Bunga lavender juga digunakan ke dalam makanan untuk memunculkan wangi dan cita rasa yang manis.</item>
+        <item>Chrysanthemum awalnya dibudidayakan di China sebagai tanaman herbal pada abad ke 15. Chrysanthemum kuning dan putih banyak digunakan sebagai teh di berbagai negara Asia Timur. Tidak hanya untuk teh, daun dari bunga ini juga bisa dimakan layaknya sayuran.</item>
+        <item>Hydrangea adalah tanaman hias yang populer, mereka kebanyakan ditanam karena kepala bunganya yang besar. Akar dan rimpang hydrangea diindikasikan sebagai pengobatan untuk  kondisi saluran kemih dan mungkin memiliki sifat diuretik. Bunga pada semak hydrangea dapat berubah dari biru menjadi merah muda atau dari merah muda menjadi biru tergantung pada tingkat keasaman tanah.</item>
+        <item>Pada tahun 1860, setidaknya ada 183 spesies bunga anthurium yang ditemukan. Daunnya berbentuk seperti bergerombol dan sangat bervariasi. Perbungaan dari anthurium menghasilkan bunga kecil yang cantik. Bunga ini sangat populer di Indonesia sebagai leader tanaman hias.</item>
+        <item>Tumbuhan ini memiliki penampilan yang khas karena memiliki dua tipe ental dengan fungsi dan bentuk yang jelas berbeda, dengan salah satu tipe entalnya bercabang-cabang berbentuk seperti tanduk rusa. Tumbuhan paku yang juga dikenal sebagai simbar menjangan ini dapat tumbuh liar di berbagai penjuru daerah tropika dan subtropika.</item>
+        <item>Puring,[1] puding atau kroton (Codiaeum variegatum) adalah tanaman hias pekarangan populer berbentuk perdu dengan bentuk dan warna daun yang sangat bervariasi. Beragam kultivar telah dikembangkan dengan variasi warna dari hijau, kuning, jingga, merah, ungu, serta campurannya.</item>
+        <item>Suplir adalah sebutan awam bagi segolongan tumbuhan yang termasuk dalam genus Adiantum, famili Adiantaceae. Sebagai tumbuhan paku-pakuan, suplir tidak menghasilkan bunga dalam daur hidupnya.</item>
+    </string-array>
+
+    <integer-array name="data_photo">
+        <item>@drawable/lily</item>
+        <item>@drawable/adenium</item>
+        <item>@drawable/matahari</item>
+        <item>@drawable/mawar</item>
+        <item>@drawable/tulip</item>
+        <item>@drawable/anggrek</item>
+        <item>@drawable/anyelir</item>
+        <item>@drawable/freesia</item>
+        <item>@drawable/lavender</item>
+        <item>@drawable/krisan</item>
+        <item>@drawable/hidra</item>
+        <item>@drawable/anthurium</item>
+        <item>@drawable/tanduk</item>
+        <item>@drawable/puring</item>
+        <item>@drawable/suplir</item>
+    </integer-array>
+
+    <string-array name="data_suhu">
+        <item>15°-24°C</item>
+        <item>25°-30°C</item>
+        <item>22°-30°C</item>
+        <item>16°-30°C</item>
+        <item>5°-35°C</item>
+        <item>21°-30°C</item>
+        <item>18°-21°C</item>
+        <item>15°-27°C</item>
+        <item>7°-21°C</item>
+        <item>15°-22°C</item>
+        <item>-14°-10°C</item>
+        <item>15°-20°C</item>
+        <item>10°-37°C</item>
+        <item>27°-32°C</item>
+        <item>16°-21°C</item>
+    </string-array>
+
+    <string-array name="data_ketinggian">
+        <item>100 - 1200 m dpl</item>
+        <item>700 m dpl</item>
+        <item>1500 m dpl</item>
+        <item>560 - 1400 m dpl</item>
+        <item>100 - 1200 m dpl</item>
+        <item>1000 m dpl</item>
+        <item>1000 m dpl</item>
+        <item>1200 m dpl</item>
+        <item>300 - 1000 m dpl</item>
+        <item>500 - 1300 m dpl</item>
+        <item>300 - 1200 m dpl</item>
+        <item>1000 -1400 m dpl</item>
+        <item>400 -1200 m dpl</item>
+        <item>1000 -1100 m dpl</item>
+        <item>300 -1500 m dpl</item>
+    </string-array>
 </resources>

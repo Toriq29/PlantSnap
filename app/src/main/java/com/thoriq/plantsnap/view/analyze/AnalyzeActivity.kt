@@ -3,6 +3,7 @@ package com.thoriq.plantsnap.view.analyze
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -21,6 +22,7 @@ import com.thoriq.plantsnap.view.ViewModelFactory
 import com.thoriq.plantsnap.view.login.LoginViewModel
 import com.thoriq.plantsnap.view.main.MainViewModel
 import com.thoriq.plantsnap.view.result.ResultActivity
+import com.yalantis.ucrop.UCrop
 
 class AnalyzeActivity : AppCompatActivity() {
 
@@ -28,15 +30,18 @@ class AnalyzeActivity : AppCompatActivity() {
     private lateinit var viewModel: AnalyzeViewModel
 
     private var currentImageUri: Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAnalyzeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val factory = ViewModelFactory.getInstance(application)
+        val intentCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         viewModel = ViewModelProvider(this, factory).get(AnalyzeViewModel::class.java)
 
         binding.galleryButton.setOnClickListener { startGallery() }
+        binding.cameraButton.setOnClickListener { startCamera()}
         binding.analyzeButton.setOnClickListener {
             currentImageUri?.let {
                 viewModel.uploadImage(this, it)
@@ -44,6 +49,7 @@ class AnalyzeActivity : AppCompatActivity() {
                 viewModel.result.observe(this){ result ->
                     val intent = Intent(this, ResultActivity::class.java)
                     intent.putExtra(ResultActivity.EXTRA_RESULT, result)
+                    intent.putExtra(ResultActivity.EXTRA_IMAGE_URI, it.toString())
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
                     startActivity(intent)
                 }
@@ -67,10 +73,25 @@ class AnalyzeActivity : AppCompatActivity() {
         ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
         if (uri != null) {
-            currentImageUri = uri
+            UCrop.of(uri, Uri.fromFile(cacheDir.resolve("${System.currentTimeMillis()}.jpg")))
+                .withAspectRatio(16F, 16F)
+                .withMaxResultSize(1000, 1000)
+                .start(this)
             showImage()
         } else {
             Log.d("Photo Picker", "No media selected")
+        }
+    }
+
+    private fun startCamera() {
+        currentImageUri = getImageUri(this)
+        launcherIntentCamera.launch(currentImageUri)
+    }
+    private val launcherIntentCamera = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) { isSuccess ->
+        if (isSuccess) {
+            showImage()
         }
     }
 
@@ -92,5 +113,22 @@ class AnalyzeActivity : AppCompatActivity() {
         } else {
             binding.progressBar.visibility = View.GONE
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d(TAG, "onActivityResult")
+        if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
+            currentImageUri = UCrop.getOutput(data!!)
+            showImage()
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            val errorMessage = UCrop.getError(data!!)?.message.toString()
+            showToast(errorMessage)
+            Log.e(TAG, errorMessage)
+        }
+    }
+
+    companion object {
+        private const val TAG = "AnalyzeActivity"
     }
 }

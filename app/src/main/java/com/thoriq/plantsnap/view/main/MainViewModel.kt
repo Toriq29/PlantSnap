@@ -11,7 +11,6 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.thoriq.plantsnap.data.UserRepository
 import com.thoriq.plantsnap.data.pref.History
-import com.thoriq.plantsnap.data.pref.Plant
 import com.thoriq.plantsnap.data.pref.UserModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch

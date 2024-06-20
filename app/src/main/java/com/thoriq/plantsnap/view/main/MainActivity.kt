@@ -16,6 +16,7 @@ import com.thoriq.plantsnap.data.pref.Plant
 import com.thoriq.plantsnap.databinding.ActivityMainBinding
 import com.thoriq.plantsnap.view.ViewModelFactory
 import com.thoriq.plantsnap.view.analyze.AnalyzeActivity
+import com.thoriq.plantsnap.view.recommendation.RecommendationActivity
 import com.thoriq.plantsnap.view.result.ResultActivity
 import com.thoriq.plantsnap.view.welcome.WelcomeActivity
 
@@ -84,6 +85,9 @@ class MainActivity : AppCompatActivity() {
         }
         binding.resultButton.setOnClickListener{
             startActivity(Intent(this, AnalyzeActivity::class.java))
+        }
+        binding.recommendationButton.setOnClickListener{
+            startActivity(Intent(this, RecommendationActivity::class.java))
         }
     }
 
