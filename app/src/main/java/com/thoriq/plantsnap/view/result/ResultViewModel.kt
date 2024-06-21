@@ -68,8 +68,6 @@ class ResultViewModel(private val repository: UserRepository) : ViewModel() {
                         _isLoading.value = false
                         val data = document.data!!
 
-
-
                         val plant = Plant(
                             name = data["Name"] as String,
                             temperature = data["Temprature"] as String,
@@ -78,7 +76,8 @@ class ResultViewModel(private val repository: UserRepository) : ViewModel() {
                             fertilizing = data["Fertilizing"] as String,
                             repotting = data["Repotting"] as String,
                             pests = data["Pests"] as String,
-                            description = data["Description"] as String
+                            description = data["Description"] as String,
+                            image = data["Image"] as String
 
                         )
 

@@ -13,10 +13,12 @@
     <string name="message_main_page">Selamat Belajar di Dicoding.</string>
     <string name="greeting">Halo %1$s,</string>
     <string name="logout">Keluar</string>
-    <string name="result">Result</string>
-    <string name="gallery">gallery</string>
-    <string name="analyze">analyze</string>
+    <string name="result">Hasil</string>
+    <string name="gallery">Galeri</string>
+    <string name="analyze">Analisa</string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="recommendation">Rekomendasi</string>
+    <string name="history">History</string>
 
     <string-array name="data_name">
         <item>Lily</item>

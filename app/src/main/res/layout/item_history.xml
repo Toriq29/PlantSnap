@@ -5,23 +5,25 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:backgroundTint="#008037"
     android:layout_gravity="center"
-    android:layout_marginStart="8dp"
+    android:layout_marginStart="70dp"
     android:layout_marginTop="4dp"
-    android:layout_marginEnd="8dp"
+    android:layout_marginEnd="70dp"
     android:layout_marginBottom="4dp"
     card_view:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tv_item_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:textColor="@color/white"
             android:gravity="center"
             android:textSize="20sp"
             android:textStyle="bold"

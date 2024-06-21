@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.thoriq.plantsnap.R
@@ -22,7 +23,6 @@ class ResultActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_RESULT = "extra_result"
-        const val EXTRA_IMAGE_URI = "extra_image_uri"
     }
 
     private lateinit var binding: ActivityResultBinding
@@ -41,14 +41,6 @@ class ResultActivity : AppCompatActivity() {
 
         val result = intent.getStringExtra(EXTRA_RESULT)
 
-        if (intent.hasExtra(EXTRA_IMAGE_URI)) {
-            val imageUri = Uri.parse(intent.getStringExtra(EXTRA_IMAGE_URI))
-            imageUri?.let {
-                Log.d("Image URI", "showImage: $it")
-                showResult(it)
-            }
-        }
-
         result?.let {
             showToast(it)
             viewModel.getPlant(it)
@@ -63,11 +55,10 @@ class ResultActivity : AppCompatActivity() {
             binding.description.text = plant.description
             binding.repotting.text = plant.repotting
             binding.pests.text = plant.pests
+            Glide.with(binding.root.context)
+                .load(plant.image)
+                .into(binding.resultImage)
         }
-    }
-
-    private fun showResult(imageUri: Uri) {
-        binding.resultImage.setImageURI(imageUri)
     }
 
     private fun showLoading(isLoading: Boolean) {

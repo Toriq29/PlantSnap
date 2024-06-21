@@ -49,7 +49,6 @@ class AnalyzeActivity : AppCompatActivity() {
                 viewModel.result.observe(this){ result ->
                     val intent = Intent(this, ResultActivity::class.java)
                     intent.putExtra(ResultActivity.EXTRA_RESULT, result)
-                    intent.putExtra(ResultActivity.EXTRA_IMAGE_URI, it.toString())
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
                     startActivity(intent)
                 }

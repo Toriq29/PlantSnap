@@ -8,5 +8,6 @@ data class Plant(
     val fertilizing: String?,
     val repotting: String?,
     val pests: String?,
-    val description: String?
+    val description: String?,
+    val image: String?
 )

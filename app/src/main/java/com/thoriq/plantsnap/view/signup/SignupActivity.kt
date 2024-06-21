@@ -39,7 +39,7 @@ class SignupActivity : AppCompatActivity() {
             if(email.isNotEmpty() && name.isNotEmpty() && pass.isNotEmpty()){
                 signupViewModel.signUp(this, name, email, pass)
             } else{
-                Toast.makeText(this, "Empty FIelds Are not Allowed !!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Kolom Kosong Tidak Diizinkan !!", Toast.LENGTH_SHORT).show()
             }
             signupViewModel.isRegister.observe(this){
                 if (it){
@@ -55,6 +55,7 @@ class SignupActivity : AppCompatActivity() {
 //                        create()
 //                        show()
 //                    }
+                    Toast.makeText(this, "Registrasi Berhasil <3 ", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
