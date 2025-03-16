@@ -1,5 +1,5 @@
-Link demo YouTube : [https://www.youtube.com/watch?v=oHhBnfMdD7Q](https://www.youtube.com/shorts/wpiA3iCBmSs)
-Link PPT : https://www.canva.com/design/DAGIq5hjzv4/mvfOiqixR5HWXW5xRfSrEQ/edit
+#### Link demo YouTube : [https://www.youtube.com/watch?v=oHhBnfMdD7Q](https://www.youtube.com/shorts/wpiA3iCBmSs)
+#### Link PPT : https://www.canva.com/design/DAGIq5hjzv4/mvfOiqixR5HWXW5xRfSrEQ/edit
 
 # PlantSnap
 
